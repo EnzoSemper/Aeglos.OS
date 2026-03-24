@@ -1,0 +1,20 @@
+[workspace]
+members = [
+    "kernel",
+    "numenor",
+    "aska",
+    "semantic",
+    "userspace/ash",
+    "userspace/installer",
+]
+# bootloader targets aarch64-unknown-uefi — a different ABI from the rest of
+# the workspace (aarch64-unknown-none). Build it via tools/build.sh directly.
+exclude = [
+    "userspace/bootloader",
+]
+resolver = "2"
+
+[workspace.package]
+version    = "0.1.0"
+authors    = ["Aeglos Systems LLC"]
+edition    = "2021"
