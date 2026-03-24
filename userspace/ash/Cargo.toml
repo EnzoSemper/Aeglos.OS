@@ -1,0 +1,17 @@
+[package]
+name = "ash"
+version = "0.1.0"
+edition = "2021"
+build = "build.rs"
+
+[[bin]]
+name = "ash"
+path = "src/main.rs"
+
+[dependencies]
+aska = { path = "../../aska" }
+
+[profile.release]
+panic = "abort"
+lto = true
+opt-level = "s"

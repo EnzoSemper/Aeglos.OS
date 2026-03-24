@@ -1,0 +1,40 @@
+#ifndef _LIBCPP_CONFIG_SITE
+#define _LIBCPP_CONFIG_SITE
+
+// Disable features that require OS support
+#define _LIBCPP_HAS_NO_THREADS
+#define _LIBCPP_HAS_NO_MONOTONIC_CLOCK
+#define _LIBCPP_HAS_NO_TERMINAL
+#define _LIBCPP_HAS_NO_FILESYSTEM
+#define _LIBCPP_HAS_NO_RANDOM_DEVICE
+#define _LIBCPP_HAS_NO_LOCALIZATION
+// #define _LIBCPP_HAS_NO_WIDE_CHARACTERS
+#define _LIBCPP_HAS_NO_STD_FILESYSTEM
+
+// Disable exceptions and RTTI for bare metal (optional, but good for size)
+#ifndef __EXCEPTIONS
+#define _LIBCPP_NO_EXCEPTIONS
+#endif
+#ifndef __GXX_RTTI
+#define _LIBCPP_NO_RTTI
+#endif
+
+// Hardening Configuration (Required by newer libcxx)
+#define _LIBCPP_HARDENING_MODE_DEFAULT _LIBCPP_HARDENING_MODE_NONE
+#define _LIBCPP_ASSERTION_SEMANTIC_DEFAULT _LIBCPP_ASSERTION_SEMANTIC_IGNORE
+
+// FORCE inject size_t into std (Fix for bare metal)
+#ifdef __cplusplus
+#include "time.h"  // Force time_t
+#include "wchar.h" // Force mbstate_t
+#include <stddef.h>
+namespace std {
+using ::ptrdiff_t;
+using ::size_t;
+} // namespace std
+#endif
+
+// Use our own ABI/Stubs
+// #define _LIBCPP_ABI_VERSION 1
+
+#endif // _LIBCPP_CONFIG_SITE

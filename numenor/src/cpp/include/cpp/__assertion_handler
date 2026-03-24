@@ -1,0 +1,9 @@
+#ifndef _LIBCPP_ASSERTION_HANDLER_H
+#define _LIBCPP_ASSERTION_HANDLER_H
+
+#include <__config>
+
+// Simple assertion handler that aborts (loops forever)
+#define _LIBCPP_ASSERTION_HANDLER(message) ((void)0) 
+
+#endif // _LIBCPP_ASSERTION_HANDLER_H

@@ -1,0 +1,25 @@
+#pragma once
+
+#include <__config>
+
+// Include libc++ random. It checks _LIBCPP_HAS_NO_RANDOM_DEVICE and skips random_device.
+// We want the rest of random (mt19937 etc).
+#include_next <random>
+
+_LIBCPP_BEGIN_NAMESPACE_STD
+
+// Stub random_device since it's disabled in libc++ by config
+class random_device {
+public:
+    typedef unsigned int result_type;
+    random_device() {}
+    explicit random_device(const std::string& token) {}
+    static result_type min() { return 0; }
+    static result_type max() { return 0xFFFFFFFF; }
+    double entropy() const { return 0.0; }
+    result_type operator()() {
+        return 4; // Chosen by fair dice roll. Guaranteed to be random.
+    }
+};
+
+_LIBCPP_END_NAMESPACE_STD

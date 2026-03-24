@@ -1,0 +1,50 @@
+#pragma once
+
+#include <__config>
+#include <string>
+
+_LIBCPP_BEGIN_NAMESPACE_STD
+
+// Libc++ alias is: using stringstream = basic_stringstream<char>;
+// So we must define the template it points to.
+
+template <class CharT, class Traits, class Allocator> class basic_stringstream {
+  std::basic_string<CharT, Traits, Allocator> _str;
+
+public:
+  basic_stringstream() {}
+  basic_stringstream(const std::basic_string<CharT, Traits, Allocator> &s)
+      : _str(s) {}
+
+  // Generic shift operator
+  template <typename T> basic_stringstream &operator<<(const T &val) {
+    // Minimal support
+    return *this;
+  }
+
+  // Specializations/Overloads
+  basic_stringstream &operator<<(const CharT *val) {
+    if (val)
+      _str += val;
+    return *this;
+  }
+  basic_stringstream &
+  operator<<(const std::basic_string<CharT, Traits, Allocator> &val) {
+    _str += val;
+    return *this;
+  }
+  basic_stringstream &operator<<(CharT val) {
+    _str += val;
+    return *this;
+  }
+
+  basic_stringstream &operator<<(std::basic_ostream<CharT, Traits> &(
+          *)(std::basic_ostream<CharT, Traits> &)) {
+    return *this;
+  }
+
+  std::basic_string<CharT, Traits, Allocator> str() const { return _str; }
+  void str(const std::basic_string<CharT, Traits, Allocator> &s) { _str = s; }
+};
+
+_LIBCPP_END_NAMESPACE_STD // namespace std

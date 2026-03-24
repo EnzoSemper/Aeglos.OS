@@ -1,0 +1,18 @@
+[package]
+name = "bootloader"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "bootloader"
+path = "src/main.rs"
+
+[dependencies]
+# uefi 0.27 — last version with the classic SystemTable<Boot> entry signature.
+# Works with nightly Rust and the aarch64-unknown-uefi target.
+uefi = { version = "0.27" }
+
+[profile.release]
+opt-level = "z"
+lto = true
+panic = "abort"

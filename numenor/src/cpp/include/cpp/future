@@ -1,0 +1,38 @@
+#pragma once
+
+#include <utility>
+
+namespace std {
+
+enum class launch { async = 1, deferred = 2 };
+
+template <class T> class future {
+  T val;
+
+public:
+  future(T &&v) : val(std::move(v)) {}
+  future() = default;
+
+  T get() { return std::move(val); }
+  void wait() const {}
+  bool valid() const { return true; }
+};
+
+#include <type_traits>
+
+template <class Function, class... Args>
+auto async(launch policy, Function &&f, Args &&...args)
+    -> future<typename std::invoke_result<Function, Args...>::type> {
+  using ResultType = typename std::invoke_result<Function, Args...>::type;
+  // Execute synchronously
+  return future<ResultType>(f(std::forward<Args>(args)...));
+}
+
+template <class Function, class... Args>
+auto async(Function &&f, Args &&...args)
+    -> future<typename std::invoke_result<Function, Args...>::type> {
+  return async(launch::async, std::forward<Function>(f),
+               std::forward<Args>(args)...);
+}
+
+} // namespace std

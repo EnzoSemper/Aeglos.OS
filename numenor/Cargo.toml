@@ -1,0 +1,11 @@
+[package]
+name = "numenor"
+version = "0.1.0"
+edition = "2021"
+authors = ["Aeglos Systems LLC"]
+description = "Numenor — AI Runtime service for Aeglos OS"
+
+[dependencies]
+
+[build-dependencies]
+cc = "=1.1.37"

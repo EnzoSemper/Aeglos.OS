@@ -1,0 +1,36 @@
+# Build artefacts — all nested target dirs
+/target/
+**/target/
+**/*.pdb
+
+# Large binary assets — not version-controlled
+drive.img
+*.img
+aeglos.iso
+*.iso
+model.gguf
+model_fast.gguf
+*.gguf
+*.ggml
+
+# Vendor source trees — checked out separately via build tooling
+vendor/
+
+# UTM virtual machine bundle
+Aeglos.utm/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Claude Code internal state
+.claude/

@@ -1,0 +1,8 @@
+[package]
+name = "semantic"
+version = "0.1.0"
+edition = "2021"
+authors = ["Aeglos Systems LLC"]
+description = "Semantic Memory Layer for Aeglos OS"
+
+[dependencies]

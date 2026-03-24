@@ -1,0 +1,1533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aeglos Systems — Precision Defense Analytics & Tactical Equipment</title>
+  <meta name="description" content="Aeglos Systems builds AI-native operating systems and hardware platforms engineered for the most demanding defense environments. The spear that never misses." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Serif:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:           #0b0c0e;
+      --surface:      #111316;
+      --border:       #1c1f25;
+      --border-light: #252830;
+      --text:         #dde0e8;
+      --text-dim:     #7a7f8e;
+      --text-muted:   #454a56;
+      --gold:         #c2a96a;
+      --gold-dim:     #8a7240;
+      --white:        #f0f2f5;
+      --nav-h:        72px;
+      --max-w:        1200px;
+      --section-pad:  120px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'IBM Plex Sans', system-ui, -apple-system, sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Typography ─────────────────────────────────────────────── */
+    h1, h2, h3, h4 {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    /* ── Layout ─────────────────────────────────────────────────── */
+    .container {
+      max-width: var(--max-w);
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+
+    @media (max-width: 768px) {
+      .container { padding: 0 24px; }
+      :root { --section-pad: 80px; }
+    }
+
+    section {
+      padding: var(--section-pad) 0;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ── Navigation ─────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      z-index: 100;
+      background: rgba(11, 12, 14, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s;
+    }
+
+    nav .container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-wordmark {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.06em;
+      color: var(--text-dim);
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--white); }
+
+    .nav-cta {
+      font-size: 12px !important;
+      font-weight: 600 !important;
+      letter-spacing: 0.1em !important;
+      color: var(--gold) !important;
+      border: 1px solid var(--gold-dim);
+      padding: 8px 20px;
+      transition: background 0.2s, color 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold) !important;
+      color: var(--bg) !important;
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { gap: 20px; }
+      .nav-links li:not(:last-child):not(:nth-last-child(2)) { display: none; }
+      .nav-wordmark { display: none; }
+    }
+
+    /* ── Hero ───────────────────────────────────────────────────── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-top: var(--nav-h);
+      border-top: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: 0.35;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 20%, transparent 100%);
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 1;
+      padding: 80px 0;
+    }
+
+    .hero-logo {
+      width: 110px;
+      height: auto;
+      margin-bottom: 48px;
+      opacity: 0.95;
+    }
+
+    .hero-eyebrow {
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(42px, 6vw, 80px);
+      font-weight: 800;
+      color: var(--white);
+      max-width: 820px;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .hero-title span {
+      color: var(--gold);
+    }
+
+    .hero-tagline {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 28px;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      font-weight: 300;
+      color: var(--text-dim);
+      max-width: 560px;
+      line-height: 1.7;
+      margin-bottom: 52px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--bg);
+      background: var(--gold);
+      padding: 14px 32px;
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      background: var(--white);
+      transform: translateY(-1px);
+    }
+
+    .btn-secondary {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      border: 1px solid var(--border-light);
+      padding: 14px 32px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .btn-secondary:hover {
+      color: var(--white);
+      border-color: var(--text-dim);
+    }
+
+    .hero-scroll {
+      margin-top: 80px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .hero-scroll-line {
+      width: 48px;
+      height: 1px;
+      background: var(--text-muted);
+    }
+
+    .hero-scroll span {
+      font-size: 11px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── Stats Bar ───────────────────────────────────────────────── */
+    #stats {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .stat-item {
+      background: var(--surface);
+      padding: 40px 32px;
+      text-align: center;
+    }
+
+    .stat-val {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      font-size: 40px;
+      font-weight: 800;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .stat-desc {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 768px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    /* ── About / Mission ────────────────────────────────────────── */
+    #about .section-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .section-meta {
+      position: sticky;
+      top: calc(var(--nav-h) + 32px);
+    }
+
+    .section-meta .label { margin-bottom: 16px; display: block; }
+
+    .section-num {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .section-content h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 28px;
+    }
+
+    .aeglos-acronym {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 32px;
+      padding: 24px 28px;
+      border-left: 2px solid var(--gold);
+      background: rgba(194, 169, 106, 0.04);
+    }
+
+    .acronym-row {
+      display: flex;
+      align-items: baseline;
+      gap: 0;
+      line-height: 1.7;
+    }
+
+    .acronym-letter {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--gold);
+      min-width: 14px;
+      letter-spacing: 0.02em;
+    }
+
+    .acronym-def {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 13px;
+      font-weight: 400;
+      color: var(--text-muted);
+      letter-spacing: 0.02em;
+    }
+
+    .section-content p {
+      color: var(--text-dim);
+      font-size: 17px;
+      line-height: 1.8;
+      max-width: 640px;
+      margin-bottom: 20px;
+    }
+
+    .pillars {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      margin-top: 52px;
+    }
+
+    .pillar {
+      background: var(--surface);
+      padding: 32px 28px;
+    }
+
+    .pillar-icon {
+      width: 32px;
+      height: 32px;
+      margin-bottom: 16px;
+      color: var(--gold);
+    }
+
+    .pillar h4 {
+      font-size: 15px;
+      font-weight: 700;
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .pillar p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      #about .section-grid { grid-template-columns: 1fr; gap: 40px; }
+      .section-meta { position: static; }
+      .pillars { grid-template-columns: 1fr; }
+    }
+
+    /* ── Capabilities ───────────────────────────────────────────── */
+    #capabilities .cap-header {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-bottom: 64px;
+      align-items: end;
+    }
+
+    #capabilities .cap-header h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    #capabilities .cap-header p {
+      color: var(--text-dim);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .cap-card {
+      background: var(--surface);
+      padding: 48px 40px;
+      position: relative;
+      transition: background 0.2s;
+    }
+
+    .cap-card:hover { background: #151820; }
+
+    .cap-num {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      margin-bottom: 32px;
+    }
+
+    .cap-card h3 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      letter-spacing: -0.01em;
+    }
+
+    .cap-card p {
+      font-size: 15px;
+      color: var(--text-dim);
+      line-height: 1.75;
+    }
+
+    .cap-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 28px;
+    }
+
+    .cap-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border: 1px solid var(--border-light);
+      padding: 4px 10px;
+    }
+
+    @media (max-width: 768px) {
+      #capabilities .cap-header { grid-template-columns: 1fr; gap: 24px; }
+      .cap-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Portfolio ───────────────────────────────────────────────── */
+    #portfolio .port-header {
+      margin-bottom: 64px;
+    }
+
+    #portfolio .port-header .label {
+      display: block;
+      margin-bottom: 16px;
+    }
+
+    #portfolio .port-header h2 {
+      font-size: clamp(32px, 4vw, 48px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    #portfolio .port-header p {
+      font-size: 17px;
+      color: var(--text-dim);
+      max-width: 600px;
+      line-height: 1.7;
+    }
+
+    .port-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+    }
+
+    .port-card {
+      background: var(--surface);
+      padding: 40px 36px;
+      transition: background 0.2s;
+      position: relative;
+    }
+
+    .port-card:hover { background: #151820; }
+
+    .port-icon {
+      width: 36px;
+      height: 36px;
+      color: var(--gold);
+      margin-bottom: 20px;
+    }
+
+    .port-card h3 {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 12px;
+    }
+
+    .port-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.75;
+      margin-bottom: 20px;
+    }
+
+    .port-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      border: 1px solid var(--gold-dim);
+      padding: 3px 10px;
+      display: inline-block;
+    }
+
+    @media (max-width: 900px) {
+      .port-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 580px) {
+      .port-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Technology ─────────────────────────────────────────────── */
+    #technology {
+      background: var(--surface);
+    }
+
+    .tech-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 96px;
+      align-items: center;
+    }
+
+    .tech-content .label { display: block; margin-bottom: 20px; }
+
+    .tech-content h2 {
+      font-size: clamp(30px, 3.5vw, 44px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+
+    .tech-content p {
+      font-size: 16px;
+      color: var(--text-dim);
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .tech-specs {
+      margin-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .spec-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .spec-value {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-dim);
+      text-align: right;
+    }
+
+    .tech-card {
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      padding: 40px;
+    }
+
+    .tech-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 32px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .tech-card-title {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .tech-status {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #4a9e6a;
+    }
+
+    .tech-status::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #4a9e6a;
+      box-shadow: 0 0 8px #4a9e6a;
+    }
+
+    .tech-metrics {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      margin-bottom: 24px;
+    }
+
+    .metric {
+      background: var(--surface);
+      padding: 20px;
+    }
+
+    .metric-val {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .metric-label {
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .tech-feature-list {
+      list-style: none;
+    }
+
+    .tech-feature-list li {
+      font-size: 13px;
+      color: var(--text-dim);
+      padding: 8px 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .tech-feature-list li::before {
+      content: '';
+      width: 4px;
+      height: 4px;
+      background: var(--gold);
+      flex-shrink: 0;
+      transform: rotate(45deg);
+    }
+
+    @media (max-width: 900px) {
+      .tech-inner { grid-template-columns: 1fr; gap: 48px; }
+    }
+
+    /* ── Newsletter ──────────────────────────────────────────────── */
+    #newsletter {
+      background: var(--surface);
+      text-align: center;
+      padding: 96px 0;
+    }
+
+    #newsletter .label { display: block; margin-bottom: 20px; }
+
+    #newsletter h2 {
+      font-size: clamp(28px, 4vw, 44px);
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+    }
+
+    #newsletter p {
+      font-size: 16px;
+      color: var(--text-dim);
+      max-width: 480px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 0;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 14px 20px;
+      background: var(--bg);
+      border: 1px solid var(--border-light);
+      border-right: none;
+      color: var(--text);
+      font-size: 14px;
+      font-family: 'IBM Plex Sans', sans-serif;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .newsletter-form input::placeholder { color: var(--text-muted); }
+    .newsletter-form input:focus { border-color: var(--gold-dim); }
+
+    .newsletter-form button {
+      padding: 14px 28px;
+      background: var(--gold);
+      color: var(--bg);
+      border: none;
+      font-family: 'IBM Plex Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+
+    .newsletter-form button:hover { background: var(--white); }
+
+    @media (max-width: 520px) {
+      .newsletter-form { flex-direction: column; }
+      .newsletter-form input { border-right: 1px solid var(--border-light); border-bottom: none; }
+    }
+
+    /* ── Contact / CTA ──────────────────────────────────────────── */
+    #contact {
+      text-align: center;
+      padding: 160px 0;
+    }
+
+    #contact .label { display: block; margin-bottom: 24px; }
+
+    #contact h2 {
+      font-size: clamp(36px, 5vw, 64px);
+      font-weight: 800;
+      color: var(--white);
+      margin-bottom: 20px;
+      letter-spacing: -0.02em;
+    }
+
+    #contact > .container > p {
+      font-size: 18px;
+      color: var(--text-dim);
+      max-width: 520px;
+      margin: 0 auto 48px;
+      line-height: 1.7;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      max-width: 800px;
+      margin: 64px auto 0;
+    }
+
+    .contact-item {
+      background: var(--surface);
+      padding: 32px 24px;
+    }
+
+    .contact-item .label { margin-bottom: 8px; }
+
+    .contact-item a, .contact-item p {
+      font-size: 14px;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+      margin: 0;
+    }
+
+    .contact-item a:hover { color: var(--white); }
+
+    @media (max-width: 600px) {
+      .contact-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ── Footer ─────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 72px 0 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 64px;
+      margin-bottom: 64px;
+    }
+
+    .footer-brand img {
+      height: 28px;
+      width: auto;
+      opacity: 0.6;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .footer-brand p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+      max-width: 280px;
+      margin-bottom: 24px;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 12px;
+    }
+
+    .footer-social a {
+      width: 36px;
+      height: 36px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid var(--border-light);
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .footer-social a:hover {
+      color: var(--gold);
+      border-color: var(--gold-dim);
+    }
+
+    .footer-col h4 {
+      font-family: 'IBM Plex Serif', Georgia, serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 20px;
+    }
+
+    .footer-col ul { list-style: none; }
+
+    .footer-col ul li { margin-bottom: 10px; }
+
+    .footer-col ul li a {
+      font-size: 14px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-col ul li a:hover { color: var(--text); }
+
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-bottom p {
+      font-size: 12px;
+      color: var(--text-muted);
+      letter-spacing: 0.04em;
+    }
+
+    .footer-bottom-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-bottom-links a {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-bottom-links a:hover { color: var(--text); }
+
+    @media (max-width: 900px) {
+      .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+      .footer-brand { grid-column: 1 / -1; }
+    }
+
+    @media (max-width: 520px) {
+      .footer-top { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ────────────────────────────────────────── -->
+  <nav>
+    <div class="container">
+      <a href="#hero" class="nav-logo">
+        <img src="assets/aeglos_logo_white.png" alt="Aeglos Systems" />
+        <span class="nav-wordmark">Aeglos Systems</span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#capabilities">Capabilities</a></li>
+        <li><a href="#portfolio">Portfolio</a></li>
+        <li><a href="#technology">Technology</a></li>
+        <li><a href="#contact" class="nav-cta">Inquire</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ── Hero ──────────────────────────────────────────────── -->
+  <section id="hero">
+    <div class="hero-grid"></div>
+    <div class="container">
+      <div class="hero-inner">
+        <img src="assets/aeglos_logo.png" alt="Aeglos Systems" class="hero-logo" />
+        <div class="hero-eyebrow">
+          <span class="label">Defense · Software · Hardware</span>
+        </div>
+        <h1 class="hero-title">
+          Engineered for<br /><span>Decisive Advantage</span>
+        </h1>
+        <p class="hero-tagline">The Spear That Never Misses</p>
+        <p class="hero-sub">
+          Aeglos Systems develops AI-native operating systems and purpose-built hardware for defense organizations operating at the edge of human capability.
+        </p>
+        <div class="hero-actions">
+          <a href="#portfolio" class="btn-primary">View Portfolio</a>
+          <a href="#contact" class="btn-secondary">Work With Us</a>
+        </div>
+        <div class="hero-scroll">
+          <div class="hero-scroll-line"></div>
+          <span>Scroll to explore</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Stats Bar ──────────────────────────────────────────── -->
+  <section id="stats">
+    <div class="container">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-val">99.9%</div>
+          <div class="stat-desc">System Reliability</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">24/7</div>
+          <div class="stat-desc">Support Operations</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">ISO 9001</div>
+          <div class="stat-desc">Certified Quality</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-val">Global</div>
+          <div class="stat-desc">Deployment Ready</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── About ─────────────────────────────────────────────── -->
+  <section id="about">
+    <div class="container">
+      <div class="section-grid">
+        <div class="section-meta">
+          <span class="section-num">01</span>
+          <span class="label">Mission</span>
+        </div>
+        <div class="section-content">
+          <h2>Built for the Most Demanding Environments</h2>
+          <div class="aeglos-acronym">
+            <div class="acronym-row"><span class="acronym-letter">A</span><span class="acronym-def">nalytics and</span></div>
+            <div class="acronym-row"><span class="acronym-letter">E</span><span class="acronym-def">quipment for</span></div>
+            <div class="acronym-row"><span class="acronym-letter">G</span><span class="acronym-def">overnment and</span></div>
+            <div class="acronym-row"><span class="acronym-letter">L</span><span class="acronym-def">aw</span></div>
+            <div class="acronym-row"><span class="acronym-letter">O</span><span class="acronym-def">perations</span></div>
+            <div class="acronym-row"><span class="acronym-letter">S</span><span class="acronym-def">upport</span></div>
+          </div>
+          <p>
+            Aeglos Systems is a defense-focused software and hardware company developing the next generation of AI-native platforms for military and government applications.
+          </p>
+          <p>
+            We build from the ground up — silicon to application — engineering systems that operate reliably in contested, degraded, and denied environments where commercial solutions fail. Our platforms are designed for warfighters, not consumers.
+          </p>
+          <p>
+            Headquartered in the United States, we partner with defense primes, government agencies, and research institutions to deploy cutting-edge technology at the speed of relevance.
+          </p>
+          <div class="pillars">
+            <div class="pillar">
+              <svg class="pillar-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4L28 10V22L16 28L4 22V10L16 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                <path d="M16 4V28M4 10L28 22M28 10L4 22" stroke="currentColor" stroke-width="1" opacity="0.4"/>
+              </svg>
+              <h4>Precision</h4>
+              <p>Every system is built to exact specifications. No compromises on performance, security, or reliability.</p>
+            </div>
+            <div class="pillar">
+              <svg class="pillar-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1.5"/>
+                <path d="M16 8V16L21 21" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                <circle cx="16" cy="16" r="2" fill="currentColor"/>
+              </svg>
+              <h4>Resilience</h4>
+              <p>Designed to operate continuously in GPS-denied, communications-degraded, and kinetically contested environments.</p>
+            </div>
+            <div class="pillar">
+              <svg class="pillar-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 4L20 14H30L22 20L25 30L16 24L7 30L10 20L2 14H12L16 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+              </svg>
+              <h4>Advantage</h4>
+              <p>Delivering asymmetric technological edge through AI integration, from edge inference to multi-domain operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Capabilities ───────────────────────────────────────── -->
+  <section id="capabilities">
+    <div class="container">
+      <div class="cap-header">
+        <div>
+          <span class="label" style="display:block;margin-bottom:16px;">02 — Capabilities</span>
+          <h2>What We Build</h2>
+        </div>
+        <p>From bare-metal operating systems to purpose-built hardware, Aeglos delivers complete defense technology stacks — engineered, tested, and field-ready.</p>
+      </div>
+      <div class="cap-grid">
+        <div class="cap-card">
+          <div class="cap-num">01</div>
+          <h3>AI-Native Operating Systems</h3>
+          <p>A custom microkernel OS built from silicon to application for real-time AI inference at the tactical edge. Designed for AArch64 platforms with bare-metal LLM integration, cryptographic security, and zero-trust capability gating.</p>
+          <div class="cap-tags">
+            <span class="cap-tag">Bare Metal</span>
+            <span class="cap-tag">AArch64</span>
+            <span class="cap-tag">Real-Time</span>
+            <span class="cap-tag">AI Inference</span>
+          </div>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">02</div>
+          <h3>Edge Compute Hardware</h3>
+          <p>Purpose-built hardware platforms engineered for extreme environments — low SWaP-C, wide-temperature operation, hardware-enforced security, and field-upgradeable firmware. Designed for rapid integration into existing defense architectures.</p>
+          <div class="cap-tags">
+            <span class="cap-tag">Low SWaP-C</span>
+            <span class="cap-tag">TEMPEST</span>
+            <span class="cap-tag">DO-178C</span>
+            <span class="cap-tag">Rugged</span>
+          </div>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">03</div>
+          <h3>Autonomous Systems Software</h3>
+          <p>Software stacks for autonomous ground, aerial, and maritime platforms operating in GPS-denied and communications-degraded environments. Onboard decision-making without cloud dependency.</p>
+          <div class="cap-tags">
+            <span class="cap-tag">GPS-Denied</span>
+            <span class="cap-tag">Onboard AI</span>
+            <span class="cap-tag">Multi-Domain</span>
+            <span class="cap-tag">MOSA</span>
+          </div>
+        </div>
+        <div class="cap-card">
+          <div class="cap-num">04</div>
+          <h3>Secure Communications</h3>
+          <p>Zero-trust networking and cryptographic communications for multi-domain operations. End-to-end encrypted data pathways from sensor to command, operable across contested RF environments.</p>
+          <div class="cap-tags">
+            <span class="cap-tag">Zero Trust</span>
+            <span class="cap-tag">Type 1</span>
+            <span class="cap-tag">MANET</span>
+            <span class="cap-tag">Multi-Domain</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Portfolio ─────────────────────────────────────────── -->
+  <section id="portfolio">
+    <div class="container">
+      <div class="port-header">
+        <span class="label">03 — Systems Portfolio</span>
+        <h2>Tactical Systems Portfolio</h2>
+        <p>Advanced defense solutions engineered for precision, reliability, and mission success — from AI intelligence platforms to field-ready tactical equipment.</p>
+      </div>
+      <div class="port-grid">
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="14" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="18" cy="18" r="6" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="18" y1="4" x2="18" y2="12" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="18" y1="24" x2="18" y2="32" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="4" y1="18" x2="12" y2="18" stroke="currentColor" stroke-width="1.5"/>
+            <line x1="24" y1="18" x2="32" y2="18" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3>Aeglos Analytics</h3>
+          <p>AI-powered defense intelligence platform. Real-time threat assessment, predictive modeling, and strategic decision support powered by next-generation machine learning.</p>
+          <span class="port-tag">AI Platform</span>
+        </div>
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="14" width="24" height="16" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 14V10C12 7.8 14 6 18 6C22 6 24 7.8 24 10V14" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="18" cy="22" r="3" stroke="currentColor" stroke-width="1.5"/>
+          </svg>
+          <h3>Aries Series</h3>
+          <p>Professional-grade breaching equipment. Redefined for modern tactical operations with uncompromising force delivery and ergonomic operator control for dynamic entry scenarios.</p>
+          <span class="port-tag">Breaching</span>
+        </div>
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 4L22 24L18 28L14 24L18 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M14 24L6 30M22 24L30 30" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3>Durendal</h3>
+          <p>Premium tactical knives and edged tools. Forged from high-carbon steel with precision edge retention. Engineered to perform in the most demanding field conditions.</p>
+          <span class="port-tag">Edged Weapons</span>
+        </div>
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="10" stroke="currentColor" stroke-width="1.5"/>
+            <circle cx="16" cy="16" r="4" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M26 26L31 31" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <h3>Weathertop Recon</h3>
+          <p>Advanced surveillance and reconnaissance systems. Multi-spectrum optics, thermal imaging, and long-range observation platforms for superior situational awareness in all conditions.</p>
+          <span class="port-tag">Surveillance</span>
+        </div>
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18 4L30 10V26L18 32L6 26V10L18 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M13 18H23M18 13V23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3>Balor Medical</h3>
+          <p>Combat medical kits and trauma equipment. IFAK systems, tourniquets, and emergency medical supplies engineered for rapid deployment in high-stress, austere environments.</p>
+          <span class="port-tag">Medical</span>
+        </div>
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="8" y="10" width="20" height="20" rx="1" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M8 16H28M8 22H28M14 10V30M22 10V30" stroke="currentColor" stroke-width="1" opacity="0.5"/>
+            <path d="M13 6H23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3>Grey Company Tactical</h3>
+          <p>Elite plate carriers and load-bearing equipment. Modular design, superior weight distribution, and maximum operational flexibility for extended missions in demanding environments.</p>
+          <span class="port-tag">Load Bearing</span>
+        </div>
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="18" cy="18" r="6" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M18 4V8M18 28V32M4 18H8M28 18H32" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M8.5 8.5L11.3 11.3M24.7 24.7L27.5 27.5M27.5 8.5L24.7 11.3M11.3 24.7L8.5 27.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+          <h3>Galad Lighting</h3>
+          <p>Professional tactical illumination systems. High-lumen weapon lights, handheld flashlights, and night-vision-compatible solutions for decisive illumination at any range.</p>
+          <span class="port-tag">Illumination</span>
+        </div>
+
+        <div class="port-card">
+          <svg class="port-icon" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="6" width="24" height="24" rx="2" stroke="currentColor" stroke-width="1.5"/>
+            <path d="M12 18H24M18 12V24" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+            <circle cx="18" cy="18" r="3" fill="currentColor" opacity="0.4"/>
+          </svg>
+          <h3>Corvus EDC</h3>
+          <p>Premium everyday carry multi-tools and accessories. Precision engineering meets practical utility — designed for professionals who require reliable, compact tools at all times.</p>
+          <span class="port-tag">EDC</span>
+        </div>
+
+        <div class="port-card" style="background: var(--bg); border: 1px solid var(--border-light); display: flex; flex-direction: column; align-items: flex-start; justify-content: flex-end;">
+          <p style="font-size:13px; color: var(--text-muted); line-height:1.6; margin-bottom: 24px;">
+            All Aeglos Systems products are engineered to military specification and available to qualified defense contractors, government agencies, and allied partners.
+          </p>
+          <a href="#contact" class="btn-primary" style="font-size:12px;">Request Catalogue</a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Technology ─────────────────────────────────────────── -->
+  <section id="technology">
+    <div class="container">
+      <div class="tech-inner">
+        <div class="tech-content">
+          <span class="label">04 — Technology</span>
+          <h2>Aeglos OS: The AI-Native Microkernel</h2>
+          <p>
+            Our flagship platform is a ground-up operating system designed for defense applications that demand real-time AI inference without cloud dependency. Every layer — from hardware abstraction to application runtime — is engineered for security, speed, and reliability.
+          </p>
+          <p>
+            Aeglos OS integrates a full LLM inference stack directly into the kernel, enabling warfighters to access AI decision support in disconnected, intermittent, and limited (DIL) communications environments.
+          </p>
+          <div class="tech-specs">
+            <div class="spec-row">
+              <span class="spec-label">Architecture</span>
+              <span class="spec-value">AArch64 (ARM64)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Kernel Type</span>
+              <span class="spec-value">Custom Microkernel (Bare Metal)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">AI Runtime</span>
+              <span class="spec-value">Numenor LLM Engine (on-device)</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Security</span>
+              <span class="spec-value">Capability-Based, ASLR, TLS 1.3</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Networking</span>
+              <span class="spec-value">IPv4/IPv6 Dual-Stack, Zero Trust</span>
+            </div>
+            <div class="spec-row">
+              <span class="spec-label">Entropy</span>
+              <span class="spec-value">ChaCha20-DRBG / ARMv8.5 RNDR</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="tech-visual">
+          <div class="tech-card">
+            <div class="tech-card-header">
+              <span class="tech-card-title">Aeglos OS // System Status</span>
+              <span class="tech-status">Operational</span>
+            </div>
+            <div class="tech-metrics">
+              <div class="metric">
+                <div class="metric-val">8B</div>
+                <div class="metric-label">AI Parameters</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">&lt;1ms</div>
+                <div class="metric-label">Kernel Latency</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">16GB</div>
+                <div class="metric-label">Addressable RAM</div>
+              </div>
+              <div class="metric">
+                <div class="metric-val">Zero</div>
+                <div class="metric-label">Cloud Dependency</div>
+              </div>
+            </div>
+            <ul class="tech-feature-list">
+              <li>Real-time LLM inference at the tactical edge</li>
+              <li>Capability-based security with ASLR</li>
+              <li>Symmetric multiprocessing with work stealing</li>
+              <li>Full IPv6 dual-stack networking</li>
+              <li>Semantic memory with vector search</li>
+              <li>WASM sandbox for third-party extensions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Newsletter ────────────────────────────────────────── -->
+  <section id="newsletter">
+    <div class="container">
+      <span class="label">Stay Mission-Ready</span>
+      <h2>Priority Access & Tactical Updates</h2>
+      <p>Subscribe for exclusive product launches, capability briefings, and priority access to new systems. For qualified defense professionals.</p>
+      <form class="newsletter-form" id="newsletter-form">
+        <input type="email" placeholder="Enter your email address" required />
+        <button type="submit">Subscribe</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- ── Contact ────────────────────────────────────────────── -->
+  <section id="contact">
+    <div class="container">
+      <span class="label">05 — Contact</span>
+      <h2>Partner With Us</h2>
+      <p>We work with defense primes, government agencies, and research institutions. Inquiries are held in strict confidence.</p>
+      <div class="hero-actions" style="justify-content:center;">
+        <a href="mailto:inquiries@aeglossystems.com" class="btn-primary">Send Inquiry</a>
+        <a href="#portfolio" class="btn-secondary">View Portfolio</a>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="label">Partnerships</span>
+          <a href="mailto:partnerships@aeglossystems.com">partnerships@<br />aeglossystems.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="label">Location</span>
+          <p>United States<br />Clearance-eligible personnel</p>
+        </div>
+        <div class="contact-item">
+          <span class="label">Classification</span>
+          <p>CUI / Unclassified<br />Secure channels available</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Footer ─────────────────────────────────────────────── -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <img src="assets/aeglos_logo_white.png" alt="Aeglos Systems" />
+          <p>Precision defense analytics and tactical equipment engineered for professionals who demand excellence in the most demanding environments.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="X / Twitter">𝕏</a>
+            <a href="#" aria-label="LinkedIn">in</a>
+            <a href="#" aria-label="YouTube">▶</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Portfolio</h4>
+          <ul>
+            <li><a href="#portfolio">Aeglos Analytics</a></li>
+            <li><a href="#portfolio">Aries Series</a></li>
+            <li><a href="#portfolio">Durendal</a></li>
+            <li><a href="#portfolio">Weathertop Recon</a></li>
+            <li><a href="#portfolio">Balor Medical</a></li>
+            <li><a href="#portfolio">Grey Company Tactical</a></li>
+            <li><a href="#portfolio">Galad Lighting</a></li>
+            <li><a href="#portfolio">Corvus EDC</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#about">Mission</a></li>
+            <li><a href="#technology">Technology</a></li>
+            <li><a href="#contact">Careers</a></li>
+            <li><a href="#contact">Press Kit</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#contact">Documentation</a></li>
+            <li><a href="#contact">Warranty</a></li>
+            <li><a href="#contact">Returns</a></li>
+            <li><a href="#contact">FAQ</a></li>
+            <li><a href="#contact">Secure Portal</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Aeglos Systems. All rights reserved.</p>
+        <ul class="footer-bottom-links">
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms of Service</a></li>
+          <li><a href="#">Export Controls</a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Sticky nav border on scroll
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      nav.style.borderBottomColor = window.scrollY > 10 ? '#1c1f25' : 'transparent';
+    }, { passive: true });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    // Newsletter
+    document.getElementById('newsletter-form').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const btn = this.querySelector('button');
+      btn.textContent = 'Subscribed';
+      btn.style.background = '#4a9e6a';
+      btn.style.color = '#fff';
+      setTimeout(() => {
+        btn.textContent = 'Subscribe';
+        btn.style.background = '';
+        btn.style.color = '';
+        this.reset();
+      }, 3000);
+    });
+
+    // Fade-in cards on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.style.opacity = '1';
+          entry.target.style.transform = 'translateY(0)';
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+
+    document.querySelectorAll('.port-card, .cap-card').forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+      card.style.transition = 'opacity 0.5s ease, transform 0.5s ease, background 0.2s';
+      observer.observe(card);
+    });
+  </script>
+</body>
+</html>

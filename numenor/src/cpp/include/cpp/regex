@@ -1,0 +1,146 @@
+#pragma once
+
+#include <__config>
+#include <string>
+#include <vector>
+#include <stdexcept>
+
+_LIBCPP_BEGIN_NAMESPACE_STD
+
+namespace regex_constants {
+    enum syntax_option_type {
+        icase = 1,
+        optimize = 2,
+        nosubs = 4, // Added nosubs
+        ECMAScript = 16
+    };
+    enum match_flag_type {
+        match_default = 0,
+        format_default = 0
+    };
+}
+
+class regex_error : public std::runtime_error {
+public:
+    regex_error(const char* msg) : std::runtime_error(msg) {}
+    regex_error(const std::string& msg) : std::runtime_error(msg) {}
+};
+
+template <class CharT, class Traits = std::char_traits<CharT>>
+class basic_regex {
+public:
+    basic_regex() {}
+    basic_regex(const CharT* s, unsigned f = 0) {}
+    basic_regex(const std::basic_string<CharT, Traits>& s, unsigned f = 0) {}
+};
+
+using regex = basic_regex<char>;
+using wregex = basic_regex<wchar_t>;
+
+template <class BidiIter>
+class sub_match : public std::pair<BidiIter, BidiIter> {
+public:
+    bool matched = false;
+    long length() const { return 0; }
+    std::string str() const { return ""; }
+    operator std::string() const { return ""; }
+    // We need to support basic_string construction.
+    // Since BidiIter can be char* or iterator, we need to know CharT.
+    // Simplifying: return string for now? But wregex needs wstring.
+    // Let's assume generic conversion works or is not used heavily.
+    // generic str() that returns basic_string?
+    // standard says: basic_string<value_type> str() const;
+    // We can't easily deduce value_type here without traits.
+    // For stub: just fail if called? Or minimal.
+};
+
+using csub_match = sub_match<const char*>;
+using wcsub_match = sub_match<const wchar_t*>;
+using ssub_match = sub_match<std::string::const_iterator>;
+using wssub_match = sub_match<std::wstring::const_iterator>;
+
+// Match object (generic stub)
+template <class BidiIter>
+class match_results {
+    std::vector<sub_match<BidiIter>> matches;
+public:
+    match_results() { matches.resize(1); }
+    bool empty() const { return true; }
+    size_t size() const { return 0; }
+    
+    // Stub position and length
+    long position(size_t n = 0) const { return 0; }
+    long length(size_t n = 0) const { return 0; }
+
+    const sub_match<BidiIter>& operator[](size_t n) const {
+        static sub_match<BidiIter> dummy;
+        return dummy;
+    }
+
+    sub_match<BidiIter> prefix() const { return {}; }
+    sub_match<BidiIter> suffix() const { return {}; }
+
+    typename std::vector<sub_match<BidiIter>>::const_iterator begin() const { return matches.begin(); }
+    typename std::vector<sub_match<BidiIter>>::const_iterator end() const { return matches.end(); }
+};
+
+using smatch = match_results<std::string::const_iterator>;
+using cmatch = match_results<const char*>;
+using wsmatch = match_results<std::wstring::const_iterator>;
+using wcmatch = match_results<const wchar_t*>;
+
+
+template <class CharT, class Traits>
+bool regex_search(const std::basic_string<CharT, Traits>& s, const basic_regex<CharT, Traits>& e, regex_constants::match_flag_type f = regex_constants::match_default) {
+    return false;
+}
+
+template <class CharT, class Traits>
+bool regex_search(const std::basic_string<CharT, Traits>& s, match_results<typename std::basic_string<CharT, Traits>::const_iterator>& m, const basic_regex<CharT, Traits>& e, regex_constants::match_flag_type f = regex_constants::match_default) {
+    return false;
+}
+
+template <class CharT, class Traits>
+bool regex_match(const std::basic_string<CharT, Traits>& s, const basic_regex<CharT, Traits>& e, regex_constants::match_flag_type f = regex_constants::match_default) {
+    return false;
+}
+template <class CharT, class Traits>
+bool regex_match(const std::basic_string<CharT, Traits>& s, match_results<typename std::basic_string<CharT, Traits>::const_iterator>& m, const basic_regex<CharT, Traits>& e, regex_constants::match_flag_type f = regex_constants::match_default) {
+    return false;
+}
+
+// Regex Iterator
+template<class BidiIter, class CharT = typename std::iterator_traits<BidiIter>::value_type, class Traits = std::char_traits<CharT>>
+class regex_iterator {
+public:
+    regex_iterator() {}
+    regex_iterator(BidiIter a, BidiIter b, const basic_regex<CharT, Traits>& re, regex_constants::match_flag_type m = regex_constants::match_default) {}
+
+    bool operator==(const regex_iterator&) const { return true; }
+    bool operator!=(const regex_iterator&) const { return false; }
+    const match_results<BidiIter>& operator*() const { static match_results<BidiIter> d; return d; }
+    const match_results<BidiIter>* operator->() const { static match_results<BidiIter> d; return &d; }
+    regex_iterator& operator++() { return *this; }
+    regex_iterator operator++(int) { return *this; }
+};
+
+using sregex_iterator = regex_iterator<std::string::const_iterator>;
+using cregex_iterator = regex_iterator<const char*>;
+using wsregex_iterator = regex_iterator<std::wstring::const_iterator>;
+
+template <class CharT, class Traits>
+std::basic_string<CharT, Traits> regex_replace(const std::basic_string<CharT, Traits>& s, const basic_regex<CharT, Traits>& e, const CharT* fmt, regex_constants::match_flag_type f = regex_constants::match_default) {
+    return s;
+}
+
+template <class CharT, class Traits>
+std::basic_string<CharT, Traits> regex_replace(const std::basic_string<CharT, Traits>& s, const basic_regex<CharT, Traits>& e, const std::basic_string<CharT, Traits>& fmt, regex_constants::match_flag_type f = regex_constants::match_default) {
+    return s;
+}
+
+template <class CharT, class Traits = std::char_traits<CharT>>
+std::basic_string<CharT, Traits> regex_replace(const CharT* s, const basic_regex<CharT, Traits>& e, const CharT* fmt, regex_constants::match_flag_type f = regex_constants::match_default) {
+    return s ? std::basic_string<CharT, Traits>(s) : std::basic_string<CharT, Traits>();
+}
+
+_LIBCPP_END_NAMESPACE_STD
